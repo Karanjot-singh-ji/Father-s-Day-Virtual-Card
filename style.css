@@ -1,0 +1,164 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Roboto', sans-serif;
+}
+
+.book {
+    perspective: 1000px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    backface-visibility: hidden;
+    transform-origin: left;
+    transform: rotateY(0deg);
+    transition: transform 0.6s ease-in-out, z-index 0.6s;
+    cursor: pointer;
+    overflow: hidden; /* Ensure child elements stay within bounds */
+    animation: fadeInUp 0.6s ease-out; /* Fade in animation */
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    bottom: -20px;
+    left: -20px;
+    pointer-events: none; /* Ensure background doesn't interfere with clicking */
+}
+
+.page img {
+    width: 80%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.6s ease-in-out;
+}
+
+.cover {
+    background-image: url('cover.jpg'); /* Replace with your background image URL */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.6s ease-in-out;
+    animation: fadeIn 0.6s ease-out; /* Fade in animation */
+}
+
+.cover-content {
+    text-align: center;
+}
+
+.cover h1 {
+    font-family: 'Pacifico', cursive; /* Custom stylish font */
+    font-size: 5em; /* Increase font size for cover */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    animation: slideInDown 0.6s ease-out; /* Slide in from top animation */
+}
+
+.cover p {
+    font-size: 2em; /* Increase font size for cover */
+    animation: slideInUp 0.6s ease-out; /* Slide in from bottom animation */
+}
+
+.page h2, .page p {
+    margin: 10px 20px;
+    animation: fadeIn 0.6s ease-out; /* Fade in animation */
+}
+
+.page.turn {
+    transform: rotateY(-180deg);
+    z-index: 0;
+    animation: flipInY 0.6s ease-out; /* Flip in animation */
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    padding: 0 10px;
+}
+
+.touch-area {
+    padding: 10px 20px; /* Increase padding for larger button */
+    color: #ffffff;
+    background: #82a5ad; /* Change background color */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.touch-area:hover {
+    color: #05b5e0;
+    background: #f2f2f2; /* Add this line if you want a different hover effect */
+}
+
+.touch-area.back {
+    margin-left: 10px; /* Add left margin for spacing */
+}
+
+@media (max-width: 786px) {
+    .book {
+        width: 100%; /* Adjust book size for mobile */
+        margin: 10px; /* Adjust margin for better spacing */
+        height: 100%;
+    }
+
+    .page {
+        width: 100%; /* Adjust width to fit mobile screens */
+        height: 70%; /* Adjust height for mobile view */
+        top: 50%; /* Center vertically on mobile */
+        transform: translateY(-50%) rotateY(0deg);
+    }
+
+    .page img {
+        width: 70%; /* Adjust image size for mobile */
+        max-width: 250px;
+    }
+
+    .cover {
+        height: 100vh;
+        width: 100%;
+        font-size: 1.5em; /* Adjust font size for mobile */
+        text-align: center;
+        padding: 20px;
+    }
+
+    .cover h1 {
+        font-size: 3em; /* Adjust font size for mobile */
+        margin-bottom: 10px;
+    }
+
+    .cover p {
+        font-size: 1.5em; /* Adjust font size for mobile */
+    }
+}

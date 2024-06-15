@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day - Techno Turban</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="book">
+        <div class="page cover" id="cover">
+            <div class="cover-content">
+                <h1>Happy Father's Day!</h1>
+                <p>Click to open</p>
+            </div>
+        </div>
+        <div class="page" id="page1">
+            <h2>Happy Father's Day, Dad!</h2>
+            <p>You are the best dad in the world. Thank you for always being there for me.</p>
+            <img src="1.png" alt="Father's Day Image 1">
+            <div class="navigation">
+                <div class="touch-area forward" style="margin-left: auto;"><span>&#8594;</span></div>
+            </div>
+        </div>
+        <div class="page" id="page2">
+            <h2>To the Best Dad!</h2>
+            <p>Your strength and love have guided me and given me wings to fly. I love you!</p>
+            <img src="2.png" alt="Father's Day Image 2">
+            <div class="navigation">
+                <div class="touch-area back"><span>&#8592;</span></div>
+                <div class="touch-area forward"><span>&#8594;</span></div>
+            </div>
+        </div>
+        <div class="page" id="page3">
+            <h2>Thank You!</h2>
+            <p>May your day be filled with joy, love, and relaxation. Happy Father's Day!</p>
+            <img src="3.jpg" alt="Father's Day Image 3">
+            <div class="navigation">
+                <div class="touch-area back"><span>&#8592;</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.page');
+        let currentPage = 0;
+
+        function showNextPage() {
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].classList.add('turn');
+                currentPage++;
+                pages[currentPage].style.zIndex = pages.length - currentPage;
+            }
+        }
+
+        function showPreviousPage() {
+            if (currentPage > 0) {
+                pages[currentPage].classList.remove('turn');
+                currentPage--;
+            }
+        }
+
+        document.getElementById('cover').addEventListener('click', showNextPage);
+
+        document.querySelectorAll('.touch-area.forward').forEach(area => {
+            area.addEventListener('click', showNextPage);
+        });
+
+        document.querySelectorAll('.touch-area.back').forEach(area => {
+            area.addEventListener('click', showPreviousPage);
+        });
+
+        // Show the cover page initially
+        window.onload = () => {
+            document.getElementById('cover').style.opacity = '1';
+        };
+    </script>
+</body>
+</html>
